@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_margin="15dp"
+    android:background="#8000">
+
+    <!--<ImageButton-->
+        <!--android:id="@+id/tecent"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_height="110dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:layout_margin="15dp"-->
+        <!--android:background="@drawable/yyvideo"-->
+        <!--/>-->
+    <TextView
+        android:id="@+id/main_pic"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:layout_weight="1"
+        android:layout_margin="15dp"
+        android:text="视视视频"
+        android:textColor="#fff"
+        android:background="@drawable/yyvideo"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:typeface="monospace"/>
+
+
+</LinearLayout>
