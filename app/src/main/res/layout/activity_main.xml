@@ -37,6 +37,12 @@
             </ScrollView>
         </android.support.v4.widget.SwipeRefreshLayout>
 
+        <fragment
+            android:id="@+id/setting_fragment"
+            android:name="com.dalaowangsan.yyvideo.SettingsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="start"/>
 
     </android.support.v4.widget.DrawerLayout>
 </FrameLayout>

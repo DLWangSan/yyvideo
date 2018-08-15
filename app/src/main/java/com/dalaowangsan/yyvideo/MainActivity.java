@@ -1,5 +1,8 @@
 package com.dalaowangsan.yyvideo;
 
+import android.content.ClipData;
+import android.content.ClipboardManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import com.bumptech.glide.Glide;
@@ -33,13 +36,54 @@ import okhttp3.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+
+
     public final String vip="http://kx28.com/vip/?url=";
 
+
+    public DrawerLayout drawerLayout;
+    public Button navButton;
 
     private ImageView bingPicImage;
     private TextView mainPic;
     public SwipeRefreshLayout swipeRefresh;
+    public boolean backFlag=false;
 
+
+    //fu
+    public void copyMoney(){
+        //获取剪贴板管理器：
+        ClipboardManager cm = (ClipboardManager) getSystemService(Context.CLIPBOARD_SERVICE);
+        // 创建普通字符型ClipData
+        ClipData mClipData = ClipData.newPlainText("Label", "J7B9Tq8379");
+        // 将ClipData内容放到系统剪贴板里。
+        cm.setPrimaryClip(mClipData);
+    }
+
+    @Override
+    public void onBackPressed() {
+        if(backFlag){
+            //退出
+            copyMoney();
+            super.onBackPressed();
+        }else{
+            //单击一次提示信息
+            Toast.makeText(this, "再按一次退出", 0).show();
+            backFlag=true;
+            new Thread(){
+                public void run() {
+                    try {
+                        Thread.sleep(3000);
+                    } catch (InterruptedException e) {
+                        // TODO Auto-generated catch block
+                        e.printStackTrace();
+                    }
+                    //3秒之后，修改flag的状态
+                    backFlag=false;
+                };
+            }.start();
+        }
+    }
 
 
     @Override
@@ -50,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
             decorView.setSystemUiVisibility(View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN | View.SYSTEM_UI_FLAG_LAYOUT_STABLE);
             getWindow().setStatusBarColor(Color.TRANSPARENT);
         }
+        copyMoney();
         setContentView(R.layout.activity_main);
 
 
@@ -69,6 +114,17 @@ public class MainActivity extends AppCompatActivity {
 
         SharedPreferences prefs= PreferenceManager.getDefaultSharedPreferences(this);
 
+        drawerLayout=(DrawerLayout)findViewById(R.id.drawer_layout);
+        navButton=(Button)findViewById(R.id.nav_button);
+
+        navButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Toast.makeText(MainActivity.this,"运行到测试点",Toast.LENGTH_SHORT).show();
+                drawerLayout.openDrawer(GravityCompat.START);
+            }
+        });
+
 
         String bingPic =prefs.getString("bing_pic",null);
         if(bingPic != null){
@@ -80,6 +136,7 @@ public class MainActivity extends AppCompatActivity {
         swipeRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
+                loadBingPic();
                 AlertDialog dialog = new AlertDialog.Builder(MainActivity.this)
                         .setIcon(R.mipmap.yyvideologo)//设置标题的图片
                         .setTitle("视视视频")//设置对话框的标题
@@ -119,7 +176,6 @@ public class MainActivity extends AppCompatActivity {
                         .setNegativeButton("已经加入", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
-
                                 dialog.dismiss();
                             }
                         })
@@ -136,6 +192,8 @@ public class MainActivity extends AppCompatActivity {
                 dialog.show();
             }
         });
+
+
 
 
         //腾讯视频点击事件
@@ -217,6 +275,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+
 
     private void loadBingPic() {
         String requestBingPic = "http://guolin.tech/api/bing_pic";

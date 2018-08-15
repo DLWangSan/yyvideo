@@ -1,0 +1,20 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <PreferenceCategory android:title="关于">
+        <Preference
+            android:key="author"
+            android:summary="DLWangSan"
+            android:title="作者">
+            <intent
+                android:action="android.intent.action.VIEW"
+                android:data="https://github.com/DLWangSan" />
+        </Preference>
+        <Preference
+            android:key="donate_alipay"
+            android:title="支付宝捐赠" />
+        <Preference
+            android:key="donate_wechat"
+            android:title="微信捐赠" />
+    </PreferenceCategory>
+
+</PreferenceScreen>
