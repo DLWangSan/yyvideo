@@ -22,7 +22,7 @@
         android:layout_weight="1"
         android:text="联系我们"
         android:textColor="#fff"
-        android:textSize="40dp"
+        android:textSize="30dp"
         android:layout_gravity="center"
         android:gravity="center"/>
 

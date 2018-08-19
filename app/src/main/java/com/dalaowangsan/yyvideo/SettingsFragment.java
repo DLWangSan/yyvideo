@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Adapter;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class SettingsFragment extends Fragment {
     private TextView qqdanate;
 
     private TextView joinqq;
+    private Button play;
 
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -39,25 +41,32 @@ public class SettingsFragment extends Fragment {
         wechat=(TextView)view.findViewById(R.id.wechat);
         qqdanate=(TextView)view.findViewById(R.id.qqdonate);
         joinqq=(TextView)view.findViewById(R.id.joinqq);
+//        play=(Button) view.findViewById(R.id.play);
 
+        //play.setVisibility(View.VISIBLE);
 
         developer.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getContext(),"测试",Toast.LENGTH_SHORT).show();
-                Uri uri = Uri.parse("http://github.com/DLWangSan/");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+//                Uri uri = Uri.parse("http://github.com/DLWangSan/");
+//                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
+//                startActivity(intent);
+
+                String data="http://github.com/DLWangsan/";
+                Intent intent=new Intent(getContext(),VideoPlay.class);
+                intent.putExtra("extra_data",data);
+                startActivityForResult(intent,1);
             }
         });
 
         dlws.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Toast.makeText(getContext(),"测试",Toast.LENGTH_SHORT).show();
-                Uri uri = Uri.parse("http://github.com/DLWangSan/");
-                Intent intent = new Intent(Intent.ACTION_VIEW, uri);
-                startActivity(intent);
+                String data="http://github.com/DLWangsan/";
+                Intent intent=new Intent(getContext(),VideoPlay.class);
+                intent.putExtra("extra_data",data);
+                startActivityForResult(intent,1);
             }
         });
 
@@ -135,9 +144,14 @@ public class SettingsFragment extends Fragment {
         joinqq.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getContext(),"请选择QQ，加入官方QQ群",Toast.LENGTH_LONG).show();
-                String urlQQ ="http://qm.qq.com/cgi-bin/qm/qr?k=YT8TuNFOvmB-rOEa7_vB2a-tK1kwpbeW";
-                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlQQ)));
+//                Toast.makeText(getContext(),"请选择QQ，加入官方QQ群",Toast.LENGTH_LONG).show();
+//                String urlQQ ="http://qm.qq.com/cgi-bin/qm/qr?k=YT8TuNFOvmB-rOEa7_vB2a-tK1kwpbeW";
+//                startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse(urlQQ)));
+                Toast.makeText(getContext(),"欢迎关注吾爱论坛DLWangSan",Toast.LENGTH_LONG).show();
+                String data="https://www.52pojie.cn/?927811";
+                Intent intent=new Intent(getContext(),VideoPlay.class);
+                intent.putExtra("extra_data",data);
+                startActivityForResult(intent,11);
             }
         });
 

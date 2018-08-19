@@ -24,7 +24,7 @@
         android:text="视视视频"
         android:textColor="#fff"
         android:background="@drawable/yyvideo"
-        android:textSize="50dp"
+        android:textSize="30dp"
         android:gravity="center"
         android:typeface="monospace"/>
 

@@ -200,7 +200,7 @@ public class MainActivity extends AppCompatActivity {
         tecent_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                String data="http://v.qq.com/";
+                String data="http://m.v.qq.com/";
                 Intent intent=new Intent(MainActivity.this,VideoPlay.class);
                 intent.putExtra("extra_data",data);
                 startActivityForResult(intent,1);
